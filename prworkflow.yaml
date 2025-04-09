@@ -1,0 +1,48 @@
+name: Label High Risk PRs
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  label-high-risk:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check if configuration.prod.yml is modified
+        uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            config-prod:
+              - 'configuration.prod.yml'
+
+      - name: Add 'High risk' label
+        if: steps.filter.outputs.config-prod == 'true'
+        uses: actions-ecosystem/action-add-labels@v1
+        with:
+          labels: High risk
+
+      - name: Post warning comment and tag reviewer team
+        if: steps.filter.outputs.config-prod == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const teamMention = '@your-org/api-reviewers'; // <-- Replace with your actual org/team
+            const message = `
+⚠️ **High Risk Change Detected**
+
+This pull request includes modifications to \`configuration.prod.yml\`, which may impact production configurations.
+
+${teamMention} — please review carefully before approving.
+            `;
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.pull_request.number,
+              body: message
+            });
