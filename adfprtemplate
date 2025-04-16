@@ -1,0 +1,80 @@
+## 🚀 Feature Description
+
+- **What does this PR implement or fix in ADF?**  
+  _Briefly describe the pipeline/dataset/linked service/function/etc. and its purpose._
+
+- **Is this a New or Existing Pipeline?**
+  - [ ] New Pipeline
+  - [ ] Existing Pipeline (Live in PROD)
+
+- **If Existing, answer the following:**
+  - Will this impact production if deployed today?  
+    _Yes / No_
+  - What is the expected behavior or impact of this change on PROD?  
+    _Explain in detail, e.g., change in logic, dependency updates, schema impact, etc._
+
+---
+
+## 📁 Files & Folders Changed
+
+- List key files or directories modified:
+
+---
+
+## ✅ PR Checklist
+
+Please confirm that the following items have been completed before requesting a review:
+
+### 🔄 Code & Environment Consistency
+
+- [ ] Changes have been tested in DIT environment.
+- [ ] All 5 environment parameter files (`DIT`, `SIT`, `BAT`, `PPD`, `PROD`) have been reviewed and updated.
+- [ ] Feature flags are used to disable any code not intended for immediate deployment to PPD and PROD.
+- [ ] The feature flag(s) added or modified are well-documented and reversible.
+- [ ] No hardcoded values exist; all config is parameterized via environment files.
+
+### 🧪 Validation & Testing
+
+- [ ] Validation completed successfully in ADF Studio (debug runs, preview data, etc.).
+- [ ] Pipeline run logs have been reviewed and confirmed as expected.
+- [ ] Any linked services or datasets added are tested for connectivity and data access.
+- [ ] Any dependencies (functions, storage accounts, key vaults, etc.) are validated.
+
+### 📝 Documentation & Version Control
+
+- [ ] Purpose of the PR is clearly documented above.
+- [ ] Naming conventions are followed for all ADF resources.
+- [ ] Comments are added to complex expressions or parameters for maintainability.
+- [ ] Folder structure adheres to repo standards.
+
+### 👥 Peer Review
+
+- [ ] Code has been reviewed by at least one peer before requesting to merge into `main`.
+
+---
+
+## ⚠️ Notes / Gotchas
+
+_If any feature is behind a flag, mention which environments it is **enabled** or **disabled** in._
+
+_Example:_  
+> `EnableMyFeatureX = false` in PPD and PROD; enabled in DIT, SIT, and BAT.
+
+---
+
+## 🧵 Related Work
+
+- Jira Ticket / Work Item: `ABC-1234`
+- Dependent PRs (if any): `link to other PRs`
+
+---
+
+## 📸 Screenshots (Optional)
+
+_Add screenshots of pipeline runs, test results, or ADF Studio views, if helpful._
+
+---
+
+## Reviewer Notes
+
+- Focus area for review: `e.g., check param files, validate flag handling, logic changes, etc.`
